@@ -1,15 +1,14 @@
-from django.conf import settings
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import resolve, reverse
-from ..views import signup
-from ..forms import SignUpForm
 
-User = settings.AUTH_USER_MODEL
+from ..forms import SignUpForm
+from ..views import signup
 
 
 class SignUpTests(TestCase):
     def setUp(self):
-        url = reverse('account:signup')
+        url = reverse('signup')
         self.response = self.client.get(url)
 
     def test_signup_status_code(self):
@@ -39,7 +38,7 @@ class SignUpTests(TestCase):
 
 class SuccessfulSignUpTests(TestCase):
     def setUp(self):
-        url = reverse('account:signup')
+        url = reverse('signup')
         data = {
             'username': 'john',
             'email': 'john@doe.com',
@@ -71,7 +70,7 @@ class SuccessfulSignUpTests(TestCase):
 
 class InvalidSignUpTests(TestCase):
     def setUp(self):
-        url = reverse('account:signup')
+        url = reverse('signup')
         # submit an empty dictionary
         self.response = self.client.post(url, {})
 

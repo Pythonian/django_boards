@@ -11,5 +11,4 @@ class BoardAdmin(admin.ModelAdmin):
     inlines = [TopicInlineModel]
 
 
-admin.site.register(Topic, TopicInlineModel)
 admin.site.register(Board, BoardAdmin)
